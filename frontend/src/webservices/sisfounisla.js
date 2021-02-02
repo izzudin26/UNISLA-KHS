@@ -17,3 +17,19 @@ export const login = async (username, password) => {
             });
     })
 }
+
+export const getKhs = (semester, cookie) => {
+    return new Promise((resolve,reject) => {
+        axios.get(`${url}/khs/${semester}`, {
+            headers: {
+                "x-cookie-sisfo": cookie,
+            },
+        })
+        .then((response) => {
+            const data = response.data
+            resolve(data)
+        }).catch((err) => {
+            reject(err == "Error: Request failed with status code 403" ? "Unauthorized" : err)
+        });
+    })
+}

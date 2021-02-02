@@ -1,1 +1,1 @@
-export const url = "https://unisla-khs-backend-api.izzudin26.vercel.app"
+export const url = "https://unisla-sisfo-api.vercel.app"
