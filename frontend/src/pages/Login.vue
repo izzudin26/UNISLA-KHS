@@ -7,7 +7,30 @@
       class="rounded-xl sm:w-full xs:w-full md:w-2/4 lg:w-2/5 transform transition hover:scale-105 h-auto py-10 px-3 flex flex-col bg-white outline-none mx-auto shadow-lg align self-center"
     >
       <span class="font-semibold p-4 flex text-2xl">Login</span>
-      <form class="p-4" @submit.prevent="">
+      <template v-if="recentUser">
+        <SelectUser :user="recentUser" />
+        <div
+          @click="recentUser = false"
+          class="items-center block text-center mx-5 rounded hover:text-blue-500"
+        >
+          <button
+            class="font-bold focus:outline-none flex flex-row mx-auto p-2"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-5 h-5 mr-2 my-auto"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                d="M8 9a3 3 0 100-6 3 3 0 000 6zM8 11a6 6 0 016 6H2a6 6 0 016-6zM16 7a1 1 0 10-2 0v1h-1a1 1 0 100 2h1v1a1 1 0 102 0v-1h1a1 1 0 100-2h-1V7z"
+              />
+            </svg>
+            Gunakan Akun lain
+          </button>
+        </div>
+      </template>
+      <form v-else class="p-4" @submit.prevent="formLogin">
         <div class="my-auto relative flex flex-wrap items-stretch mb-3">
           <input
             type="text"
@@ -112,10 +135,15 @@
 
 <script>
 import { login } from "../webservices/sisfounisla";
+import SelectUser from "../components/selectUser";
 
 export default {
   name: "Login",
+  components: {
+    SelectUser,
+  },
   data: () => ({
+    recentUser: {},
     isLogin: false,
     showPassword: false,
     failedMessage: "",
@@ -123,6 +151,12 @@ export default {
     password: "",
     isSave: false,
   }),
+  created() {
+    const recentUser = sessionStorage.getItem("user");
+    this.recentUser = JSON.parse(recentUser);
+    console.log(this.recentUser)
+  },
+
   methods: {
     formLogin() {
       this.isLogin = true;
