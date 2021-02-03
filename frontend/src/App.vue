@@ -6,6 +6,12 @@
 
 export default {
   name: 'App',
+  watch: {
+      // eslint-disable-next-line no-unused-vars
+      '$route' (to, from) {
+        document.title = to.meta.title || 'UNISLA KHS'
+      }
+    },
 }
 </script>
 
