@@ -10,7 +10,7 @@ module.exports = {
       white: color.white,
       green: color.green,
       purple: color.purple,
-      
+      red: color.red
     },
     screens: {
       xs: "320px",
