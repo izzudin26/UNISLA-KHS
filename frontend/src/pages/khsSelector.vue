@@ -3,6 +3,7 @@
     id="khs"
     class="flex mx-auto justify-self-center container w-screen h-screen justify-center align-middle"
   >
+  <HeaderButton />
     <div
       class="rounded-xl sm:w-full xs:w-full md:w-2/4 lg:w-2/5 transform transition hover:scale-105 h-auto py-10 px-3 flex flex-col bg-white outline-none mx-auto shadow-lg align self-center"
     >
@@ -10,6 +11,7 @@
       <div
         v-for="i in 8"
         :key="i"
+         @click="goTo(i)"
         class="flex flex-row rounded-md hover:text-white hover:bg-blue-500 border-2 hover:border-white border-blue-500 p-2 mt-2 mr-5 ml-5 transition transform hover:scale-105"
       >
         <svg
@@ -26,7 +28,7 @@
             d="M13 9l3 3m0 0l-3 3m3-3H8m13 0a9 9 0 11-18 0 9 9 0 0118 0z"
           />
         </svg>
-        <button @click="goTo(i)" class="block focus:outline-none font-semibold">
+        <button class="block focus:outline-none font-semibold">
           Semester {{ i }}
         </button>
       </div>
