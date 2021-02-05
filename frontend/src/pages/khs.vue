@@ -53,7 +53,6 @@ export default {
       getKhs(semester, cookie)
         .then((result) => {
           this.khs = result.data;
-          console.log(this.khs);
         })
         .catch((err) => {
           err == "Unauthorized" ? this.$router.replace("/") : console.log(err);

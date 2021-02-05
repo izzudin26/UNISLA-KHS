@@ -8,19 +8,19 @@ const routes = [
     {
         path: "/login",
         name: "login",
-        component: import("../pages/Login.vue"),
+        component: () => import("@/pages/Login.vue"),
         meta: {title: "Login"}
     },
     {
         path: "/khs",
         name: "Khs",
-        component: import("../pages/khsSelector.vue"),
+        component: () => import("@/pages/khsSelector.vue"),
         meta: {title: "Pilih KHS"}
     },
     {
         path: "/khs/:semester",
         name: "Khs semester",
-        component: import("../pages/khs.vue"),
+        component: () => import("@/pages/khs.vue"),
         meta: {title: "KHS"}
 
     }
