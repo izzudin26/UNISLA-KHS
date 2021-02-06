@@ -14,7 +14,7 @@ class sisfoController {
   }
 
   async getKhs(req: Request, res: Response): Promise<Response> {
-    const cookie = req.headers["cookie"];
+    const cookie = req.headers["x-cookie-sisfo"]?.toString();
     let semester = parseInt(req.params.semester);
     try {
       let result = await sisfoService.getKhs(semester, cookie);
