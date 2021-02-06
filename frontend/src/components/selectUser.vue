@@ -1,7 +1,7 @@
 <template>
   <div>
     <div
-    @click="relogin"
+      @click="relogin"
       class="border-2 m-5 border-blue-500 rounded-lg flex flex-row transform transition hover:scale-105 hover:text-blue-500 cursor-default"
     >
       <svg
@@ -32,11 +32,10 @@ export default {
   methods: {
     relogin() {
       this.isLogin = true;
-          this.$router.push("/khs");
-
+      this.$router.push("/khs");
       login(this.user.nim, this.user.password)
         .then((response) => {
-          sessionStorage.setItem("sessionLogin", response.cookie)
+          localStorage.setItem("sessionLogin", response.cookie);
         })
         .catch((err) => {
           if (err == "wrong username password") {

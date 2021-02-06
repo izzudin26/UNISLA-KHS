@@ -4,9 +4,10 @@
     class="flex mx-auto justify-self-center container w-screen h-screen justify-center align-middle"
   >
     <div
-      class="rounded-xl sm:w-full xs:w-full md:w-2/4 lg:w-2/5 transform transition hover:scale-105 h-auto py-10 px-3 flex flex-col bg-white outline-none mx-auto shadow-lg align self-center"
+      class="rounded-xl sm:w-full xs:w-full md:w-2/4 lg:w-2/5 transform transition hover:scale-105 h-auto py-8 px-3 flex flex-col bg-white outline-none mx-auto shadow-lg align self-center"
     >
-      <span class="font-semibold p-4 flex text-2xl">Login</span>
+      <span class="font-bold p-1 flex text-2xl mx-auto">Login</span>
+      <img :src="image" class="p-3 md:w-1/2 lg:w-1/2 mx-auto xs:w-full sm:w-1/2" />
       <template v-if="recentUser">
         <SelectUser :user="recentUser" />
         <div
@@ -50,6 +51,7 @@
           />
           <div class="absolute inset-y-0 right-0 flex items-center">
             <button
+            type="button"
               @click="showPassword = !showPassword"
               class="p-2 focus:outline-none"
             >
@@ -145,6 +147,7 @@ export default {
   data: () => ({
     recentUser: {},
     isLogin: false,
+    image: require("@/assets/login.jpg"),
     showPassword: false,
     failedMessage: "",
     nim: "",
@@ -152,7 +155,7 @@ export default {
     isSave: false,
   }),
   created() {
-    const recentUser = sessionStorage.getItem("user");
+    const recentUser = localStorage.getItem("user");
     this.recentUser = JSON.parse(recentUser);
     console.log(this.recentUser)
   },
@@ -174,7 +177,7 @@ export default {
         });
     },
     saveSessionLogin(session) {
-      sessionStorage.setItem("sessionLogin", session);
+      localStorage.setItem("sessionLogin", session);
     },
     saveUser(nim, password) {
       console.log("Saved user");
@@ -182,8 +185,8 @@ export default {
         nim,
         password,
       };
-      sessionStorage.setItem("user", JSON.stringify(data));
-      console.log(sessionStorage.getItem("user"));
+      localStorage.setItem("user", JSON.stringify(data));
+      console.log(localStorage.getItem("user"));
     },
   },
 };
