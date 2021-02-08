@@ -137,6 +137,7 @@
 
 <script>
 import { login } from "../webservices/sisfounisla";
+import {EncryptPassword} from "../webservices/encryptor"
 import SelectUser from "../components/selectUser";
 
 export default {
@@ -183,7 +184,7 @@ export default {
       console.log("Saved user");
       const data = {
         nim,
-        password,
+        password: EncryptPassword(password),
       };
       localStorage.setItem("user", JSON.stringify(data));
       console.log(localStorage.getItem("user"));

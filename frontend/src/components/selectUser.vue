@@ -22,6 +22,7 @@
 
 <script>
 import { login } from "../webservices/sisfounisla";
+import {decryptPassword} from "../webservices/encryptor"
 
 export default {
   name: "SelectUser",
@@ -33,7 +34,7 @@ export default {
     relogin() {
       this.isLogin = true;
       this.$router.push("/khs");
-      login(this.user.nim, this.user.password)
+      login(this.user.nim, decryptPassword(this.user.password))
         .then((response) => {
           localStorage.setItem("sessionLogin", response.cookie);
         })
